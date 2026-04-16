@@ -1,0 +1,4 @@
+project_id = "wfcxwsvuifruhkjgbvul"
+
+[functions.create-deposit]
+verify_jwt = false

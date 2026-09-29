@@ -15,6 +15,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/contexts/AuthContext";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { Mail } from "lucide-react";
 
 const navItems = [
   { label: "Dashboard", icon: LayoutDashboard, path: "/dashboard" },
@@ -81,6 +82,16 @@ export function ClientSidebar() {
             <span className="text-xs text-muted-foreground">Theme</span>
             <ThemeToggle />
           </div>
+          <a
+            href="mailto:Profitpulsecustomer@gmail.com?subject=ProfitPulse%20Support%20Request"
+            className="flex items-center gap-3 px-4 py-2 rounded-md text-sm text-muted-foreground hover:text-primary hover:bg-secondary transition-colors"
+          >
+            <Mail className="h-5 w-5" />
+            <span className="flex flex-col leading-tight">
+              Customer Care
+              <span className="text-xs break-all">Profitpulsecustomer@gmail.com</span>
+            </span>
+          </a>
           <Button variant="ghost" className="w-full justify-start gap-3 text-muted-foreground hover:text-destructive" onClick={handleLogout}>
             <LogOut className="h-5 w-5" />
             Logout

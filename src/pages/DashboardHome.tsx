@@ -25,7 +25,7 @@ interface Investment {
 }
 
 export default function DashboardHome() {
-  const { user } = useAuth();
+  const { user, profile } = useAuth();
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [investments, setInvestments] = useState<Investment[]>([]);
   const [loading, setLoading] = useState(true);
@@ -88,7 +88,7 @@ export default function DashboardHome() {
     <div className="space-y-8">
       <div>
         <h1 className="text-2xl md:text-3xl font-bold text-foreground">Dashboard</h1>
-        <p className="text-muted-foreground mt-1">Welcome back, Investor</p>
+        <p className="text-muted-foreground mt-1">Welcome back, {profile?.display_name?.split(" ")[0] || user?.user_metadata?.full_name?.split(" ")[0] || "Investor"}</p>
       </div>
 
       <div className="grid sm:grid-cols-3 gap-4">

@@ -80,11 +80,17 @@ export type Database = {
       profiles: {
         Row: {
           avatar_url: string | null
+          country: string | null
           created_at: string
+          date_of_birth: string | null
           display_name: string | null
+          email: string | null
           id: string
           kyc_document_url: string | null
           kyc_status: string
+          onboarding_completed: boolean
+          phone: string | null
+          preferred_plan: string | null
           referral_code: string | null
           referred_by: string | null
           updated_at: string
@@ -92,11 +98,17 @@ export type Database = {
         }
         Insert: {
           avatar_url?: string | null
+          country?: string | null
           created_at?: string
+          date_of_birth?: string | null
           display_name?: string | null
+          email?: string | null
           id?: string
           kyc_document_url?: string | null
           kyc_status?: string
+          onboarding_completed?: boolean
+          phone?: string | null
+          preferred_plan?: string | null
           referral_code?: string | null
           referred_by?: string | null
           updated_at?: string
@@ -104,11 +116,17 @@ export type Database = {
         }
         Update: {
           avatar_url?: string | null
+          country?: string | null
           created_at?: string
+          date_of_birth?: string | null
           display_name?: string | null
+          email?: string | null
           id?: string
           kyc_document_url?: string | null
           kyc_status?: string
+          onboarding_completed?: boolean
+          phone?: string | null
+          preferred_plan?: string | null
           referral_code?: string | null
           referred_by?: string | null
           updated_at?: string

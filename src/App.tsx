@@ -21,6 +21,8 @@ import AdminActions from "./pages/AdminActions";
 import AdminDeposits from "./pages/AdminDeposits";
 import AdminKycReview from "./pages/AdminKycReview";
 import ReferralsPage from "./pages/ReferralsPage";
+import OnboardingPage from "./pages/OnboardingPage";
+import AdminInvestors from "./pages/AdminInvestors";
 import { AIChatWidget } from "@/components/AIChatWidget";
 
 const queryClient = new QueryClient();
@@ -34,7 +36,8 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
-            <Route path="/dashboard" element={<ProtectedRoute><DashboardLayout /></ProtectedRoute>}>
+            <Route path="/onboarding" element={<ProtectedRoute><OnboardingPage /></ProtectedRoute>} />
+            <Route path="/dashboard" element={<ProtectedRoute requireOnboarding><DashboardLayout /></ProtectedRoute>}>
               <Route index element={<DashboardHome />} />
               <Route path="invest" element={<InvestPage />} />
               <Route path="deposit" element={<DepositPage />} />
@@ -46,6 +49,7 @@ const App = () => (
             <Route path="/admin-dashboard" element={<ProtectedRoute><AdminLayout /></ProtectedRoute>}>
               <Route index element={<AdminOverview />} />
               <Route path="users" element={<AdminUsers />} />
+              <Route path="investors" element={<AdminInvestors />} />
               <Route path="deposits" element={<AdminDeposits />} />
               <Route path="actions" element={<AdminActions />} />
               <Route path="kyc" element={<AdminKycReview />} />

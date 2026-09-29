@@ -10,6 +10,7 @@ import {
   Shield,
   ArrowDownToLine,
   FileCheck,
+  Briefcase,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AdminNotificationBell } from "@/components/AdminNotificationBell";
@@ -17,6 +18,7 @@ import { AdminNotificationBell } from "@/components/AdminNotificationBell";
 const navItems = [
   { label: "Overview", icon: LayoutDashboard, path: "/admin-dashboard" },
   { label: "Users", icon: Users, path: "/admin-dashboard/users" },
+  { label: "Investors", icon: Briefcase, path: "/admin-dashboard/investors" },
   { label: "Deposits", icon: ArrowDownToLine, path: "/admin-dashboard/deposits" },
   { label: "KYC Review", icon: FileCheck, path: "/admin-dashboard/kyc" },
   { label: "Actions", icon: Settings, path: "/admin-dashboard/actions" },

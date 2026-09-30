@@ -1,8 +1,8 @@
 import { useMemo } from "react";
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
+import { AreaChart, Area, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 
 interface PortfolioChartProps {
-  investments: Array<{ amount: number; created_at: string }>;
+  investments: Array<{ amount: number; roi_percent: number; status: string; created_at: string }>;
   transactions: Array<{ amount: number; type: string; status: string; created_at: string }>;
 }
 
@@ -10,7 +10,16 @@ export function PortfolioChart({ investments, transactions }: PortfolioChartProp
   const chartData = useMemo(() => {
     const now = new Date();
     const days = 30;
-    const data: { date: string; balance: number }[] = [];
+    const activeInvestments = investments.filter((investment) => investment.status === "active");
+    const projectedPrincipal = activeInvestments.reduce((sum, investment) => sum + investment.amount, 0);
+    const projectedDailyProfit = activeInvestments.reduce(
+      (sum, investment) => sum + (investment.amount * investment.roi_percent) / 100 / 10,
+      0,
+    );
+    const projectionStart = new Date(now);
+    projectionStart.setDate(projectionStart.getDate() - 7);
+    projectionStart.setHours(0, 0, 0, 0);
+    const data: { date: string; balance: number; projectedBalance?: number }[] = [];
 
     // Build a simple cumulative balance over the last 30 days
     for (let i = days; i >= 0; i--) {
@@ -31,17 +40,22 @@ export function PortfolioChart({ investments, transactions }: PortfolioChartProp
         .reduce((sum, t) => sum + t.amount, 0);
 
       const balance = depositsUpTo - withdrawalsUpTo + interestUpTo;
+      const projectionDay = Math.floor((d.getTime() - projectionStart.getTime()) / 86_400_000);
 
       data.push({
         date: d.toLocaleDateString("en-US", { month: "short", day: "numeric" }),
         balance: Math.max(0, balance),
+        projectedBalance:
+          projectedPrincipal > 0 && projectionDay >= 0
+            ? projectedPrincipal + projectedDailyProfit * projectionDay
+            : undefined,
       });
     }
 
     return data;
-  }, [transactions]);
+  }, [investments, transactions]);
 
-  if (chartData.every((d) => d.balance === 0)) {
+  if (chartData.every((d) => d.balance === 0 && d.projectedBalance === undefined)) {
     return (
       <div className="bg-card border border-border rounded-xl p-6">
         <h2 className="text-lg font-semibold text-foreground mb-4">Portfolio Performance</h2>
@@ -54,7 +68,12 @@ export function PortfolioChart({ investments, transactions }: PortfolioChartProp
 
   return (
     <div className="bg-card border border-border rounded-xl p-6">
-      <h2 className="text-lg font-semibold text-foreground mb-4">Portfolio Performance (30d)</h2>
+      <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
+        <h2 className="text-lg font-semibold text-foreground">Portfolio Performance (30d)</h2>
+        <span className="rounded-full border border-primary/30 bg-primary/10 px-2.5 py-1 text-xs font-medium text-primary">
+          7-day projection · simulated
+        </span>
+      </div>
       <ResponsiveContainer width="100%" height={250}>
         <AreaChart data={chartData}>
           <defs>
@@ -73,9 +92,21 @@ export function PortfolioChart({ investments, transactions }: PortfolioChartProp
               borderRadius: "8px",
               color: "hsl(0, 0%, 95%)",
             }}
-            formatter={(value: number) => [`$${value.toLocaleString()}`, "Balance"]}
+            formatter={(value: number, name: string) => [
+              `$${value.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`,
+              name === "projectedBalance" ? "Projected balance" : "Actual balance",
+            ]}
           />
           <Area type="monotone" dataKey="balance" stroke="hsl(135, 100%, 40%)" fill="url(#balanceGradient)" strokeWidth={2} />
+          <Line
+            type="monotone"
+            dataKey="projectedBalance"
+            stroke="hsl(var(--warning))"
+            strokeWidth={2}
+            strokeDasharray="6 4"
+            dot={false}
+            connectNulls={false}
+          />
         </AreaChart>
       </ResponsiveContainer>
     </div>

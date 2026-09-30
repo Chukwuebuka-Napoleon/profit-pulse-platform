@@ -68,11 +68,8 @@ export function PortfolioChart({ investments, transactions }: PortfolioChartProp
 
   return (
     <div className="bg-card border border-border rounded-xl p-6">
-      <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
+      <div className="mb-4">
         <h2 className="text-lg font-semibold text-foreground">Portfolio Performance (30d)</h2>
-        <span className="rounded-full border border-primary/30 bg-primary/10 px-2.5 py-1 text-xs font-medium text-primary">
-          7-day projection · simulated
-        </span>
       </div>
       <ResponsiveContainer width="100%" height={250}>
         <AreaChart data={chartData}>

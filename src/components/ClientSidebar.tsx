@@ -19,6 +19,7 @@ import { Mail } from "lucide-react";
 
 const navItems = [
   { label: "Dashboard", icon: LayoutDashboard, path: "/dashboard" },
+  { label: "My Portfolio", icon: Wallet, path: "/dashboard/portfolio" },
   { label: "Invest", icon: TrendingUp, path: "/dashboard/invest" },
   { label: "Deposit", icon: Wallet, path: "/dashboard/deposit" },
   { label: "Withdraw", icon: ArrowUpRight, path: "/dashboard/withdraw" },

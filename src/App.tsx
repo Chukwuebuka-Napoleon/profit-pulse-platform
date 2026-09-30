@@ -24,6 +24,7 @@ import ReferralsPage from "./pages/ReferralsPage";
 import OnboardingPage from "./pages/OnboardingPage";
 import AdminInvestors from "./pages/AdminInvestors";
 import { AIChatWidget } from "@/components/AIChatWidget";
+import PortfolioPage from "./pages/PortfolioPage";
 
 const queryClient = new QueryClient();
 
@@ -39,6 +40,7 @@ const App = () => (
             <Route path="/onboarding" element={<ProtectedRoute><OnboardingPage /></ProtectedRoute>} />
             <Route path="/dashboard" element={<ProtectedRoute requireOnboarding><DashboardLayout /></ProtectedRoute>}>
               <Route index element={<DashboardHome />} />
+              <Route path="portfolio" element={<PortfolioPage />} />
               <Route path="invest" element={<InvestPage />} />
               <Route path="deposit" element={<DepositPage />} />
               <Route path="withdraw" element={<WithdrawPage />} />

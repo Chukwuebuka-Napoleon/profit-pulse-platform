@@ -1,73 +1,58 @@
-# Welcome to your Lovable project
+# Profit Pulse Platform
 
-## Project info
+Build a high-end Cryptocurrency Investment Platform called 'Profit Pulse' with a dark, modern fintech aesthetic (Neon Green and Charcoal Gray). The platform needs two distinct user experiences: a Client Dashboard and a hidden Admin Management Portal.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+1. Landing Page:
 
-## How can I edit this code?
+Hero section with 'Start Investing' and 'View Demo' buttons.
 
-There are several ways of editing your application.
+Live Crypto Price Ticker (BTC, ETH, USDT) at the top.
 
-**Use Lovable**
+Investment Plan Cards: 'Starter' (10% ROI), 'Silver' (20% ROI), and 'Gold' (35% ROI).
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+2. Client Portal (Authenticated):
 
-Changes made via Lovable will be committed automatically to this repo.
+Dashboard: Show 'Total Balance,' 'Total Profit,' and 'Active Deposits' in US Dollar.
 
-**Use your preferred IDE**
+Investment Interface: A way for users to select a plan, input an amount, and 'Commit' funds.
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+Transactions: A table showing Deposit/Withdrawal history with status badges (Pending, Confirmed, Cancelled).
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+Profile: Section for users to upload a 'KYC' document (Identity Verification).
 
-Follow these steps:
+3. Admin Portal (Route: /admin-dashboard):
+
+User Management: List all registered users with their current balances.
+
+Action Center: Buttons for the Admin to 'Approve Deposit,' 'Decline Withdrawal,' or 'Add Interest' to a specific user's account manually.
+
+System Overview: Total platform liquidity and number of active investors.
+
+4. Functional Requirements:
+
+Use Lucide-react icons for the sidebar navigation.
+
+Ensure all buttons on the landing page link to a functional 'Sign Up' or 'Login' modal.
+
+Make the layout fully responsive for mobile investors.
+
+This project was built with [Lovable](https://lovable.dev).
+
+## Build with Lovable
+
+Continue developing this project in the [Lovable editor](https://lovable.dev/projects/d7c4a2a4-b17b-4ba1-8665-e9d5df9a0bc0).
+
+- **Ship faster**: describe what you want to build and Lovable handles the code.
+- **Stay in sync**: every change made in Lovable is committed straight to this repository.
+- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
+
+## Development
+
+Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
+git clone <this-repository-url>
+cd <repository-name>
 npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
 npm run dev
 ```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
